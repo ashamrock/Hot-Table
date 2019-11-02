@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservations - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<header>
+<h1>Reserve a Table</h1>  
+</header>
+  <body>
+  <div class="container">
+    <h>ID</h>
+  <input type="any" class="form-control" id="identification">
+  <h>Name</h>
+  <input type="text" class="form-control" id="name">
+  <h>Email</h>
+  <input type="text" class="form-control" id="email">
+  <h>Phone Number</h>
+  <input type="number" class="form-control" id="phoneNumber">
+</div>
+
+<div>
+<button type="submit" id="makeReservation" onclick="submit()">
+    <span>
+Make a reservation
+</span>
+</button>
+</div>
+
+<script type="text/javascript">
+var tablesArray = [];
+var waitlistArray = [];
+
+var submit = function() {
+    event.preventDefault();
+    alert("request made");
+    var newcustomer = {
+        identification: $("#identification").val().trim(),
+        name: $("#name").val().trim(),
+        email: $("#email").val().trim(),
+        phoneNumber:$("#phoneNumber").val().trim()
+}
+
+  
+// if (tablesArray.length = 5) {
+//   waitlistArray.push(newcustomer);
+// alert("no tables available, you're on the waitlist");
+//  }
+
+// else if (tablesArray.length < 5) {
+//   tablesArray.push(newcustomer);
+
+// }
+  $.post("/api/customers", newcustomer)
+  .then(function() {
+    console.log('yay')
+  })
+  .catch(function(err) {
+    console.log(err)
+  })
+};
+
+
+
+// alert("reserving table").then(console.log(newcustomer))
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
